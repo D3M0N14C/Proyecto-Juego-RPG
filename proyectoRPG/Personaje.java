@@ -1,5 +1,5 @@
 import javax.swing.JOptionPane;
-public abstract class Personaje {
+public abstract class Personaje implements MostrarI{
     protected String nombre;
     protected int vida;
     protected int vidamax;
@@ -78,7 +78,7 @@ public abstract class Personaje {
             nivel = nivel + 1; 
             vidamax += 10;
             manamax += 15;
-            ataque += 5;
+            ataque += 15;
             ataquemag += 15;
             defensa += 5;
         }
@@ -90,7 +90,7 @@ public abstract class Personaje {
 
     @Override
     public String toString(){
-        return "Nombre:" + nombre + "\n" +
+        return "\n Nombre:" + nombre + "\n" +
                 "Vida: " + vida + " / " + vidamax + "\n" +
                 "Mana: " + mana + " / " + manamax + "\n" +
                 "Ataque: " + ataque + "\n" +
@@ -115,6 +115,7 @@ public abstract class Personaje {
 
     /** Información de los personajes */
     
+    @Override
     public void minfo(){        
         JOptionPane.showMessageDialog(null, this.toString(), "Información del personaje", JOptionPane.INFORMATION_MESSAGE);
 

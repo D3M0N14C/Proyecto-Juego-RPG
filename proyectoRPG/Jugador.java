@@ -1,13 +1,12 @@
-import javax.swing.JOptionPane;
-
-public class Jugador extends Personaje{
+public class Jugador extends Personaje {
 
     Inventario inventario;
     IHabilidades habilidades;
 
     /** Constructor Jugador */
 
-    public Jugador(String nombre, int vida, int vidamax, int mana, int manamax, int ataque, int ataquemag, int defensa, int nivel, int experiencia){
+    public Jugador(String nombre, int vida, int vidamax, int mana, int manamax, int ataque, int ataquemag, int defensa,
+            int nivel, int experiencia) {
         super(nombre, vida, vidamax, mana, manamax, ataque, ataquemag, defensa, nivel, experiencia);
 
         inventario = new Inventario();
@@ -17,31 +16,31 @@ public class Jugador extends Personaje{
 
     /** Incluir objetos a inventario del personaje */
 
-    public void AggObjeto(Objeto objeto){
+    public void AggObjeto(Objeto objeto) {
         inventario.aggobjeto(objeto);
     }
 
     /** Uso de objetos segun el tipo especificado */
 
-    public void UObjeto(Objeto objeto){
-        switch(objeto.tipo){
+    public void UObjeto(Objeto objeto) {
+        switch (objeto.tipo) {
             case "Ataque":
-                ataquetem =  objeto.valor;
+                ataquetem = objeto.valor;
                 break;
             case "Defensa":
-                defensatem =  objeto.valor;
+                defensatem = objeto.valor;
                 break;
             case "Vida":
                 vida = vida + objeto.valor;
 
-                if(vida > vidamax){
-                vida = vidamax;
+                if (vida > vidamax) {
+                    vida = vidamax;
                 }
                 break;
             case "Mana":
                 mana = mana + objeto.valor;
 
-                if(mana > manamax){
+                if (mana > manamax) {
                     mana = manamax;
                 }
                 break;
@@ -51,17 +50,16 @@ public class Jugador extends Personaje{
 
     /** Incluir habilidades a inventario de habilidades del personaje */
 
-    public void AggHabilidad(Habilidades newhabilidad){
+    public void AggHabilidad(Habilidades newhabilidad) {
         habilidades.agghabilidad(newhabilidad);
     }
 
     /** Uso de habilidades segun el tipo especificado y retorno de daño o curacion*/
 
-    public int UHabilidades(Habilidades habilidad){
+    public int UHabilidades(Habilidades habilidad) throws ManaInsuficienteException{
         int danio = 0;
         if(mana < habilidad.costomana){
-            JOptionPane.showMessageDialog(null, "Maná insuficiente");
-            return -1;
+            throw new ManaInsuficienteException("No hay maná suficente");
         }else if(mana >= habilidad.costomana){
             switch(habilidad.tipo){
             case "Ataque":
@@ -89,30 +87,34 @@ public class Jugador extends Personaje{
 
     /** Inventario de objetos */
 
-    public void MInventario(){
+    public void MInventario() {
         inventario.minfo();
     }
 
     /** Inventario de habilidades */
 
-    public void MInventarioHab(){
+    public void MInventarioHab() {
         habilidades.minfo();
     }
 
     /** Metodo optencion de experienca personaje */
 
-    public void Gexp(int exp){
+    public void Gexp(int exp) {
         experiencia = experiencia + exp;
     }
 
     /** Reinicio de estadisticas temporales y vidas proximo turno de combate */
 
-    public void Pcombate(){
+    public void Pcombate() {
         vida = vidamax;
         ataquetem = 0;
         ataquemagtem = 0;
         defensatem = 0;
     }
 
-    
+    @Override
+    public void minfo() {
+        new VentanaInformacion(this).setVisible(true);
+    }
+
 }

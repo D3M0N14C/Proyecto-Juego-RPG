@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class IHabilidades {
+public class IHabilidades implements MostrarI{
 
     ArrayList<Habilidades> inventariohab;
 
@@ -23,6 +23,7 @@ public class IHabilidades {
 
     /** Mostrar información de las habilidades */
 
+    @Override
     public void minfo(){
         String informacion = "";
         for(Habilidades habilidad : inventariohab){

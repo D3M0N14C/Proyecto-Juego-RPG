@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Objeto {
+public class Objeto implements MostrarI{
 
     String nombre;
     String tipo;
@@ -16,6 +16,7 @@ public class Objeto {
 
     /** Información objetos */
 
+    @Override
     public void minfo(){
         String informacion = "Nombre: " + nombre + "\n" + 
                             "Tipo: " + tipo + "\n" + 

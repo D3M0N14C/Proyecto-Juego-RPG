@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Habilidades {
+public class Habilidades implements MostrarI{
 
     String nombre;
     String tipo;
@@ -18,6 +18,7 @@ public class Habilidades {
 
     /** Mostrar información de cada habilidad */
 
+    @Override
     public void minfo(){
         String informacion = "Nombre: " + nombre + "\n" + 
                             "Tipo: " + tipo + "\n" + 

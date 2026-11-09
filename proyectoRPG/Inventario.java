@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-public class Inventario {
+public class Inventario implements MostrarI{
     ArrayList<Objeto> inventario;
 
     /** Constructor inventario */
@@ -25,6 +25,7 @@ public class Inventario {
 
     /** Mostrar información del objeto */
 
+    @Override
     public void minfo(){
         String informacion = "";
         for(Objeto objeto : inventario){

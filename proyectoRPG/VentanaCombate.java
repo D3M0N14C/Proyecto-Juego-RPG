@@ -24,6 +24,12 @@ public class VentanaCombate extends JFrame{
 
     JLabel Turno;
 
+    JProgressBar barravidaJ;
+    JProgressBar barramanaJ;
+
+    JProgressBar barravidaE;
+    JProgressBar barramanaE;
+
     /** Colore de panel */
 
     private final Color fondo = new Color(23, 25, 35);
@@ -77,6 +83,9 @@ public class VentanaCombate extends JFrame{
         vidaJ = new JLabel();
         manaJ = new JLabel();
         nivelJ = new JLabel();
+        barravidaJ = new JProgressBar();
+        barramanaJ = new JProgressBar();
+
 
         /** Estilo de información jugador */
 
@@ -92,13 +101,26 @@ public class VentanaCombate extends JFrame{
         manaJ.setAlignmentX(Component.CENTER_ALIGNMENT);
         nivelJ.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        /** Barra de vida y mana jugador */
+
+        barravidaJ.setStringPainted(true);
+        barravidaJ.setForeground(Color.GREEN);
+        barravidaJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        barramanaJ.setStringPainted(true);
+        barramanaJ.setForeground(Color.BLUE);
+        barramanaJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
         /** Mostrar informacion en panel jugador */
 
         Pjugador.add(nombreJ);
         Pjugador.add(Box.createVerticalStrut(10));
         Pjugador.add(vidaJ);
+        Pjugador.add(barravidaJ);
         Pjugador.add(manaJ);
+        Pjugador.add(barramanaJ);
         Pjugador.add(nivelJ);
+
 
         /** Informacion enemigo */
 
@@ -111,6 +133,8 @@ public class VentanaCombate extends JFrame{
         vidaE = new JLabel();
         manaE = new JLabel();
         nivelE = new JLabel();
+        barravidaE = new JProgressBar();
+        barramanaE = new JProgressBar();
 
         /** Estilo informacion en panel enemigo */
 
@@ -126,12 +150,23 @@ public class VentanaCombate extends JFrame{
         manaE.setAlignmentX(Component.CENTER_ALIGNMENT);
         nivelE.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        /** barra vida y mana enemigo */
+
+        barravidaE.setStringPainted(true);
+        barravidaE.setForeground(Color.RED);
+        barravidaE.setAlignmentX(Component.CENTER_ALIGNMENT);
+        barramanaE.setStringPainted(true);
+        barramanaE.setForeground(Color.BLUE);
+        barramanaE.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         /** Mostrar informacion en panel enemigo */
 
         Penemigo.add(nombreE);
         Penemigo.add(Box.createVerticalStrut(10));
         Penemigo.add(vidaE);
+        Penemigo.add(barravidaE);
         Penemigo.add(manaE);
+        Penemigo.add(barramanaE);
         Penemigo.add(nivelE);
 
         /** Incuir informacion de enemigo y jugador al iniciar programa */
@@ -228,13 +263,25 @@ public class VentanaCombate extends JFrame{
 
     public void ainfo(){
         nombreJ.setText("Héroe: " + jugador.nombre);
-        vidaJ.setText("Vida: " + jugador.vida + " / " + jugador.vidamax);
-        manaJ.setText("Maná: " + jugador.mana + " / " + jugador.manamax);
+        vidaJ.setText("Vida");
+        barravidaJ.setString(jugador.vida + " / " + jugador.vidamax);
+        barravidaJ.setMaximum(jugador.vidamax);
+        barravidaJ.setValue(jugador.vida);
+        manaJ.setText("Maná");
+        barramanaJ.setString(jugador.mana + " / " + jugador.manamax);
+        barramanaJ.setMaximum(jugador.manamax);
+        barramanaJ.setValue(jugador.mana);
         nivelJ.setText("Nivel: " + jugador.nivel);
 
         nombreE.setText("Enemigo: " + enemigo.nombre);
-        vidaE.setText("Vida: " + enemigo.vida + " / " + enemigo.vidamax);
-        manaE.setText("Maná: " + enemigo.mana + " / " + enemigo.manamax);
+        vidaE.setText("Vida");
+        barravidaE.setString(enemigo.vida + " / " + enemigo.vidamax);
+        barravidaE.setMaximum(enemigo.vidamax);
+        barravidaE.setValue(enemigo.vida);
+        manaE.setText("Maná");
+        barramanaE.setString(enemigo.mana + " / " + enemigo.manamax);
+        barramanaE.setMaximum(enemigo.manamax);
+        barramanaE.setValue(enemigo.mana);
         nivelE.setText("Nivel: " + enemigo.nivel);
     }
 

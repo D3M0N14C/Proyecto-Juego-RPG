@@ -65,7 +65,7 @@ public class PantallaInicio extends JFrame{
 
         jugar.addActionListener(e -> {
             dispose();
-            new Main().iniciarjuego();
+            new Juego().iniciarjuego();
         });
 
         salir.addActionListener(e -> System.exit(0));
